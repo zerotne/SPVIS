@@ -19,7 +19,7 @@ Video instance segmentation (VIS) extends instance-level understanding from stat
 
 ## Tracking performance
 ### Results on Youtube-VIS challenge test set
-| Dataset    |   AP   | AP_{50} | AP_{75} | AR_{1} |AR_{10} |
+| Dataset    |   $AP$   | $AP_{50}$ | $AP_{75}$ | $AR_{1}$ |$AR_{10}$ |
 |--------------|-----------|--------|-------|----------|----------|
 |Youtube-VIS 2019  | 69.5 | 92.0 |  77.8 | 61.7 | 75.9 |
 |Youtube-VIS 2021       | 64.6 | 86.9 | 72.1 | 49.6 | 70.5 |
