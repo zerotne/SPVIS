@@ -7,6 +7,8 @@ Yan Jin, Fang Gao, Qingjiao Meng, Qingbao Huang,Hanbo Zheng, Shengheng Ma
 ## :sunny: Structure of SPVIS
 <img src="utils/1.png">
 
+
+
 ## Abstract
 Video instance segmentation (VIS) extends instance-level understanding from static images to continuous video, necessitating accurate pixel-level masks and consistent identity association across frames. Feature propagation approaches, while computationally efficient, are often hindered by error accumulation and feature degradation over time. We introduce SPVIS, a VIS framework based on feature propagation, addressing these challenges through in-memory object-query propagation. SPVIS comprises a Progressive Tracker (PGT) for cross-clip association with error correction and joint feature-preserving modeling, including the Refinement Compensator (RCP) and Spatial Interaction Module (SIM), to maintain high-quality object queries. Across standard benchmarks, SPVIS achieves competitive accuracy-efficiency trade-offs, delivering 69.5, 64.6, 51.9, and 54.3 AP on YouTube-VIS 2019, 2021, 2022, and OVIS, respectively. Our framework provides a lightweight solution for long-sequence association, including scenarios with low frame rates and occlusions.
 
