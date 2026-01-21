@@ -125,6 +125,9 @@ ovis/
     annotations_{train,valid,test}.json
   {train,valid,test}/
 ```
+## Zenodo Link
+
+https://zenodo.org/records/18326724
 
 ## CitingSPVIS
 ```BibTeX
