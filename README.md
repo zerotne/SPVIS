@@ -127,7 +127,7 @@ ovis/
 ```
 ## Zenodo Link
 
-https://zenodo.org/records/18326724
+DOI: https://zenodo.org/records/18326724
 
 ## CitingSPVIS
 ```BibTeX
