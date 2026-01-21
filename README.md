@@ -20,12 +20,12 @@ There has been remarkable progress on object detection and re-identification in 
 
 ## Tracking performance
 ### Results on MOT challenge test set
-| Dataset    |  MOTA | IDF1 | IDS | MT | ML | FPS |
+| Dataset    |   AP   | & AP$_{50}$ | AP$_{75}$ | AR$_{1}$ |AR$_{10}$ | FPS |
 |--------------|-----------|--------|-------|----------|----------|--------|
-|2DMOT15  | 60.6 | 64.7 |  591 | 47.6% | 11.0% | 30.5 |
-|MOT16       | 74.9 | 72.8 | 1074 | 44.7% | 15.9% | 25.9 |
-|MOT17       | 73.7 | 72.3 | 3303 | 43.2% | 17.3% | 25.9 |
-|MOT20       | 61.8 | 67.3 | 5243 | 68.8% | 7.6% | 13.2 |
+|Youtube-VIS 2019  | 60.6 | 64.7 |  591 | 47.6% | 11.0% | 30.5 |
+|Youtube-VIS 2021       | 74.9 | 72.8 | 1074 | 44.7% | 15.9% | 25.9 |
+|Youtube-VIS 2022       | 73.7 | 72.3 | 3303 | 43.2% | 17.3% | 25.9 |
+|OVIS      | 61.8 | 67.3 | 5243 | 68.8% | 7.6% | 13.2 |
 
  All of the results are obtained on the [MOT challenge](https://motchallenge.net) evaluation server under the “private detector” protocol. We rank first among all the trackers on 2DMOT15, MOT16, MOT17 and  MOT20. The tracking speed of the entire system can reach up to **30 FPS**.
 
