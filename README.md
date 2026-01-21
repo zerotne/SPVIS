@@ -1,4 +1,3 @@
-<div align="center">
 
 # [SPVIS: Enhancing Video Instance Segmentation through Stabilized Feature Propagation]
 Yan Jin, Fang Gao, Qingjiao Meng, Qingbao Huang,Hanbo Zheng, Shengheng Ma
