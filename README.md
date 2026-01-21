@@ -1,15 +1,14 @@
 <div align="center">
 
-# [SPVIS: Enhancing Video Instance Segmentation through Stabilized Feature Propagation](https://arxiv.org/abs/2306.03413)
+# [SPVIS: Enhancing Video Instance Segmentation through Stabilized Feature Propagation]
 Yan Jin, Fang Gao, Qingjiao Meng, Qingbao Huang,Hanbo Zheng, Shengheng Ma
 
 
-
-<img src="https://github.com/zhang-tao-whu/paper_images/blob/master/dvis/pipeline.png" width="800"/>
-</div>
+## :sunny: Structure of SPVIS
+<img src="utils/1.png">
 
 ## Abstract
-There has been remarkable progress on object detection and re-identification in recent years which are the core components for multi-object tracking. However, little attention has been focused on accomplishing the two tasks in a single network to improve the inference speed. The initial attempts along this path ended up with degraded results mainly because the re-identification branch is not appropriately learned. In this work, we study the essential reasons behind the failure, and accordingly present a simple baseline to addresses the problems. It remarkably outperforms the state-of-the-arts on the MOT challenge datasets at 30 FPS. We hope this baseline could inspire and help evaluate new ideas in this field.
+Video instance segmentation (VIS) extends instance-level understanding from static images to continuous video, necessitating accurate pixel-level masks and consistent identity association across frames. Feature propagation approaches, while computationally efficient, are often hindered by error accumulation and feature degradation over time. We introduce SPVIS, a VIS framework based on feature propagation, addressing these challenges through in-memory object-query propagation. SPVIS comprises a Progressive Tracker (PGT) for cross-clip association with error correction and joint feature-preserving modeling, including the Refinement Compensator (RCP) and Spatial Interaction Module (SIM), to maintain high-quality object queries. Across standard benchmarks, SPVIS achieves competitive accuracy-efficiency trade-offs, delivering 69.5, 64.6, 51.9, and 54.3 AP on YouTube-VIS 2019, 2021, 2022, and OVIS, respectively. Our framework provides a lightweight solution for long-sequence association, including scenarios with low frame rates and occlusions.
 
 
 ## Features
@@ -19,7 +18,7 @@ There has been remarkable progress on object detection and re-identification in 
 -	Versatile Deployment: Effective in both online/offline settings for challenging scenarios (long sequences, low frame rates, heavy occlusion). 
 
 ## Tracking performance
-### Results on MOT challenge test set
+### Results on Youtube-VIS challenge test set
 | Dataset    |   AP   | &AP_{50}$ | $AP_{75}$ | $AR_{1}$ |$AR_{10}$ |
 |--------------|-----------|--------|-------|----------|----------|
 |Youtube-VIS 2019  | 69.5 | 92.0 |  77.8 | 61.7 | 75.9 |
@@ -27,7 +26,6 @@ There has been remarkable progress on object detection and re-identification in 
 |Youtube-VIS 2022       | 51.9 | 73.2 | 54.7 | 41.5 | 56.6 |
 |OVIS      | 54.3 | 78.9 | 59.3 | 20.9 | 59.9 |
 
- All of the results are obtained on the [MOT challenge](https://motchallenge.net) evaluation server under the “private detector” protocol. We rank first among all the trackers on 2DMOT15, MOT16, MOT17 and  MOT20. The tracking speed of the entire system can reach up to **30 FPS**.
 
 ## Installation
 
@@ -65,111 +63,22 @@ python -m pip install detectron2 -f \
 # install panoptic api
 pip install git+https://github.com/cocodataset/panopticapi.git
 
-
-# Prepare Datasets for DVIS
-
-A dataset can be used by accessing [DatasetCatalog](https://detectron2.readthedocs.io/modules/data.html#detectron2.data.DatasetCatalog)
-for its data, or [MetadataCatalog](https://detectron2.readthedocs.io/modules/data.html#detectron2.data.MetadataCatalog) for its metadata (class names, etc).
-This document explains how to setup the builtin datasets so they can be used by the above APIs.
-[Use Custom Datasets](https://detectron2.readthedocs.io/tutorials/datasets.html) gives a deeper dive on how to use `DatasetCatalog` and `MetadataCatalog`,
-and how to add new datasets to them.
-
-DVIS has builtin support for a few datasets.
-The datasets are assumed to exist in a directory specified by the environment variable
-`DETECTRON2_DATASETS`.
-Under this directory, detectron2 will look for datasets in the structure described below, if needed.
-```
-$DETECTRON2_DATASETS/
-  ytvis_2019/
-  ytvis_2021/
-  ovis/
-  VIPSeg/
-  VSPW_480p/
 ```
 
-You can set the location for builtin datasets by `export DETECTRON2_DATASETS=/path/to/datasets`.
-If left unset, the default is `./datasets` relative to your current working directory.
-
-The [model zoo](../MODEL_ZOO.md)
-contains configs and models that use these builtin datasets.
-
-
-## Expected dataset structure for [YouTubeVIS 2019](https://competitions.codalab.org/competitions/20128):
-
-```
-ytvis_2019/
-  {train,valid,test}.json
-  {train,valid,test}/
-    Annotations/
-    JPEGImages/
-```
-
-## Expected dataset structure for [YouTubeVIS 2021](https://competitions.codalab.org/competitions/28988):
-
-```
-ytvis_2021/
-  {train,valid,test}.json
-  {train,valid,test}/
-    Annotations/
-    JPEGImages/
-```
-
-## Expected dataset structure for [Occluded VIS](http://songbai.site/ovis/):
-
-```
-ovis/
-  annotations/
-    annotations_{train,valid,test}.json
-  {train,valid,test}/
-```
-## Expected dataset structure for [VIPSeg](https://github.com/VIPSeg-Dataset/VIPSeg-Dataset):
-
-After downloading the VIPSeg dataset, it still needs to be processed according to the official script. To save time, you can directly download the processed VIPSeg dataset from [baiduyun](https://pan.baidu.com/s/1SMausnr6pVDJXTGISeFMuw) (password is `dvis`). 
-```
-VIPSeg/
-  VIPSeg_720P/
-    images/
-    panomasksRGB/
-    panoptic_gt_VIPSeg_{train,val,test}.json
-```
-
-## Expected dataset structure for [VSPW](https://codalab.lisn.upsaclay.fr/competitions/7869#participate):
-
-```
-VSPW_480p/
-  data/
-  {train,val,test}.txt
-```
-
-## Register your own dataset:
-
-- If it is a VIS/VPS/VSS dataset, convert it to YTVIS/VIPSeg/VSPW format. If it is a image instance dataset, convert it to COCO format.
-- Register it in `/dvis/data_video/datasets/{builtin,vps,vss}.py`
+### Dataset Preparation
+- Refer to the dataset preparation method of [DVIS](https://github.com/zhang-tao-whu/DVIS/blob/main/datasets/README.md).
 
 ```BibTeX
-@article{DVIS,
-  title={DVIS: Decoupled Video Instance Segmentation Framework},
-  author={Zhang, Tao and Tian, Xingye and Wu, Yu and Ji, Shunping and Wang, Xuebo and Zhang, Yuan and Wan, Pengfei},
-  journal={arXiv preprint arXiv:2306.03413},
-  year={2023}
-}
 
-@article{zhang2023vis1st,
-  title={1st Place Solution for the 5th LSVOS Challenge: Video Instance Segmentation},
-  author={Zhang, Tao and Tian, Xingye and Zhou, Yikang and Wu, Yu and Ji, Shunping and Yan, Cilin and Wang, Xuebo and Tao, Xin and Zhang, Yuan and Wan, Pengfei},
-  journal={arXiv preprint arXiv:2308.14392},
-  year={2023}
-}
-
-@article{zhang2023vps1st,
-  title={1st Place Solution for PVUW Challenge 2023: Video Panoptic Segmentation},
-  author={Zhang, Tao and Tian, Xingye and Wei, Haoran and Wu, Yu and Ji, Shunping and Wang, Xuebo and Zhang, Yuan and Wan, Pengfei},
-  journal={arXiv preprint arXiv:2306.04091},
-  year={2023}
+@article{jinVIS2023-3st,
+  title={SPVIS: Enhancing Video Instance Segmentation through Stabilized Feature Propagation},
+  author={Yan Jin, Fang Gao, Qingjiao Meng, Qingbao Huang,Hanbo Zheng, Shengheng Ma},
+  journal={The Visual Computer},
+  year={2026}
 }
 ```
 
 ## Acknowledgement
 
-This repo is largely based on [Mask2Former](https://github.com/facebookresearch/Mask2Former), [MinVIS](https://github.com/NVlabs/MinVIS) and [VITA](https://github.com/sukjunhwang/VITA).
+This repo is largely based on [Mask2Former](https://github.com/facebookresearch/Mask2Former), [MinVIS](https://github.com/NVlabs/MinVIS) and [VITA](https://github.com/sukjunhwang/VITA), [DVIS](https://github.com/zhang-tao-whu/DVIS).
 Thanks for their excellent works.
